@@ -1,2 +1,2 @@
 class TV:
-    pass
+    del
