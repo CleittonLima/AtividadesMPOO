@@ -54,12 +54,12 @@ class TV:
             print("Por favor, ligue a TV primeiro")
 
     def git_info(self):
-        print(f"TV {self.brand} / {self.size} polegadas / {self.resolution} / {self.framerate} FPS")
+        print(f"TV {self.brand} | {self.size} polegadas | {self.resolution} | {self.framerate} FPS")
 
 tv = TV("Samsung", "85", "Full HD 4K", "90")
 tv.toggle_power()
 tv.git_info()
-tv.change_channel(5)
+tv.change_channel(10)
 tv.increase_volume()
 tv.decrease_volume()
 tv.toggle_mute()
