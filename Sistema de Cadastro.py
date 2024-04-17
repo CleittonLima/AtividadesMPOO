@@ -1,9 +1,9 @@
 class Aluno():
-    def __init__(self, id, nome, curso, endereço):
+    def __init__(self, id, nome, curso, endereco):
         self.id = id
         self.nome = nome
         self.curso = curso
-        self.endereço = endereço
+        self.endereco = endereco
 
 class Curso():
     def __init__(self, id, nome):
@@ -36,6 +36,19 @@ class Sala():
         self.capacidade = capacidade
         self.disciplina = disciplina
 
-#FALTA CRIAR INSTÂNCIAS E PRINTAR
-#VER SE PRECISA COLOCAR PRIVACIDADES
-#REVISAR SE ESTÁ TUDO CERTO
+curso1 = Curso(1, "Sistemas de Informação")
+endereco1 = Endereco("Rua Fulano de Tal", 101, "Serra Talhada", "Pernambuco", "12345-678")
+endereco2 = Endereco("Rua ABC", 123, "Triunfo", "Pernambuco", "87654-321")
+professor1 = Professor(1, "Prof. Erisvaldo")
+sala1 = Sala(12, 40)
+disciplina1 = Disciplina(1, "MPOO", professor1, sala1)
+aluno1 = Aluno(1, "Cleiton", curso1, endereco1)
+
+print("=======<> ABA ALUNO <>=======")
+print("Aluno:", aluno1.nome, "| Curso:", curso1.nome, "| Endereço:", aluno1.endereco.rua, ",", aluno1.endereco.cidade, ",", aluno1.endereco.estado)
+print()
+print("=======<> ABA PROFESSOR <>=======")
+print("Professor:", professor1.nome, "| Endereço:", endereco2.rua, ",", endereco2.cidade, ",", endereco2.estado)
+print()
+print("=======<> ABA DISCIPLINA <>=======")
+print("Disciplina:", disciplina1.nome, "| Professor", disciplina1.professor.nome, "| Sala:", disciplina1.sala.numero)
