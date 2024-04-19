@@ -1,13 +1,18 @@
-class Aluno():
-    def __init__(self, id, nome, curso, endereco):
+class Pessoa():
+    def __init__(self, id, nome, endereco):
         self.id = id
         self.nome = nome
-        self.curso = curso
         self.endereco = endereco
 
-class Curso(Aluno):
-    def __init__(self, id, nome):
-        super().__init__(id, nome, None, None)
+class Aluno(Pessoa):
+    def __init__(self, id, nome, curso, endereco):
+        super(). __init__(id, nome, endereco)
+        self.curso = curso
+
+class Curso():
+    def __init__(self, id, nomeCurso):
+        self.id = id
+        self.nomeCurso = nomeCurso
 
 class Endereco():
     def __init__(self, rua, numero, cidade, estado, cep):
@@ -17,15 +22,16 @@ class Endereco():
         self.estado = estado
         self.cep = cep
 
-class Disciplina(Aluno):
-    def __init__(self, id, nome, professor, sala):
-        super().__init__(id, nome, None, None)
+class Disciplina():
+    def __init__(self, id, nomeDisc, professor, sala):
+        self.id = id
+        self.nomeDisc = nomeDisc
         self.professor = professor
         self.sala = sala
 
-class Professor(Aluno):
+class Professor(Pessoa):
     def __init__(self, id, nome, endereco):
-        super().__init__(id, nome, None, endereco)
+        super().__init__(id, nome, endereco)
 
 class Sala():
     def __init__(self, numero, capacidade, disciplina = None):
@@ -33,20 +39,20 @@ class Sala():
         self.capacidade = capacidade
         self.disciplina = disciplina
 
-class Servidor(Aluno):
+class Servidor(Pessoa):
     def __init__(self, id, nome, cargo, departamento):
-        super().__init__(id, nome, None, None)
+        super().__init__(id, nome, None)
         self.cargo = cargo
         self.departamento = departamento
 
-class Diretor(Aluno):
+class Diretor(Pessoa):
     def __init__(self, id, nome, setor):
-        super().__init__(id, nome, None, None)
+        super().__init__(id, nome, None)
         self.setor = setor
 
-class Coordenador(Aluno):
+class Coordenador(Pessoa):
     def __init__(self, id, nome, cordenador_qual_curso):
-        super().__init__(id, nome, None, None)
+        super().__init__(id, nome, None)
         self.coordenador_qual_cursos = cordenador_qual_curso
 
 
@@ -62,19 +68,19 @@ diretor1 = Diretor(5, "Kaline", "Departamento de TI")
 coordenador1 = Coordenador(6, "Cleiton", "Sistemas de Informação")
 
 print("=======<> ABA ALUNO <>=======")
-print("Aluno (a):", aluno1.nome, "|  ID:", aluno1.id, "|", "| Curso:", curso1.nome, "| Endereço:", aluno1.endereco.rua, ",", aluno1.endereco.cidade, ",", aluno1.endereco.estado)
+print("| Aluno (a):", aluno1.nome, "|", "\n| ID:", aluno1.id, "|", "\n| Curso:", curso1.nomeCurso, "|", "\n| Endereço:", aluno1.endereco.rua, ",", aluno1.endereco.cidade, ",", aluno1.endereco.estado, ",", aluno1.endereco.cep, "|")
 print()
 print("=======<> ABA PROFESSOR <>=======")
-print("Professor (a):", professor1.nome, "|  ID:", professor1.id, "|",  "| Endereço:", endereco2.rua, ",", endereco2.cidade, ",", endereco2.estado)
+print("| Professor (a):", professor1.nome, "|", "\n| ID:", professor1.id, "|",  "\n| Endereço:", professor1.endereco.rua, ",", professor1.endereco.cidade, ",", professor1.endereco.estado, ",", professor1.endereco.cep, "|")
 print()
 print("=======<> ABA DISCIPLINA <>=======")
-print("Disciplina:", disciplina1.nome,"|  ID:", disciplina1.id, "|", "| Professor:", disciplina1.professor.nome, "| Sala:", disciplina1.sala.numero)
+print("| Disciplina:", disciplina1.nomeDisc, "|","\n| ID:", disciplina1.id, "|", "\n| Professor:", disciplina1.professor.nome, "|", "\n| Sala:", disciplina1.sala.numero, "|")
 print()
 print("=======<> ABA SERVIDOR <>=======")
-print("Servidor (a):", servidor1.nome, "|  ID:", servidor1.id, "|", "Cargo:", servidor1.cargo, "|", "Departamento:", servidor1.departamento)
+print("| Servidor (a):", servidor1.nome, "|", "\n| ID:", servidor1.id, "|", "\n| Cargo:", servidor1.cargo, "|", "\n| Departamento:", servidor1.departamento, "|")
 print()
 print("=======<> ABA DIRETOR <>=======")
-print("Diretor (a):", diretor1.nome, "|  ID:", diretor1.id, "|", "Setor:", diretor1.setor)
+print("| Diretor (a):", diretor1.nome, "|", "\n| ID:", diretor1.id, "|", "\n| Setor:", diretor1.setor, "|")
 print()
 print("=======<> ABA COORDENADOR <>=======")
-print("Coordenador (a):", coordenador1.nome, "|  ID:", coordenador1.id, "|", "Coordenador (a) do Curso:", coordenador1.coordenador_qual_cursos)
+print("| Coordenador (a):", coordenador1.nome, "|", "\n| ID:", coordenador1.id, "|", "\n| Coordenador (a) do Curso:", coordenador1.coordenador_qual_cursos, "|")
