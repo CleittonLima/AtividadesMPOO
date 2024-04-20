@@ -55,7 +55,6 @@ class Coordenador(Pessoa):
         super().__init__(id, nome, None)
         self.coordenador_qual_cursos = cordenador_qual_curso
 
-
 curso1 = Curso(1, "Sistemas de Informação")
 endereco1 = Endereco("Rua Fulano de Tal", 101, "Serra Talhada", "Pernambuco", "12345-678")
 endereco2 = Endereco("Rua ABC", 123, "Triunfo", "Pernambuco", "87654-321")
