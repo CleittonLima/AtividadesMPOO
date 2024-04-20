@@ -34,10 +34,9 @@ class Professor(Pessoa):
         super().__init__(id, nome, endereco)
 
 class Sala():
-    def __init__(self, numero, capacidade, disciplina = None):
+    def __init__(self, numero, capacidade):
         self.numero = numero
         self.capacidade = capacidade
-        self.disciplina = disciplina
 
 class Servidor(Pessoa):
     def __init__(self, id, nome, cargo, departamento):
