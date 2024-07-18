@@ -5,7 +5,7 @@ class Quarto:
         self.numero = numero
         self.preco = preco
         self.tipo = tipo
-        self.status_quarto = True  # Quarto está disponível por padrão
+        self.status_quarto = True
 
     def quarto_disponivel(self):
         self.status_quarto = True
@@ -18,7 +18,7 @@ class Cliente:
     def __init__(self, nome, id):
         self.nome = nome
         self.id = id
-        self.reservas = []  # Inicializar lista de reservas
+        self.reservas = []
     
     def adicionar_reserva(self, reserva):
         self.reservas.append(reserva)
@@ -56,16 +56,12 @@ class Hotel:
             print("Reserva não pode ser feita. Cliente ou quarto não encontrado/disponível.")
 
 
-# Criar hotel
 hotel = Hotel()
 
-# Adicionar quartos
 hotel.adicionar_quarto(Quarto(101, "solteiro", 150.0))
 hotel.adicionar_quarto(Quarto(102, "duplo", 200.0))
 
-# Registrar clientes
 cliente1 = Cliente("João Silva", 1)
 hotel.registrar_cliente(cliente1)
 
-# Fazer uma reserva
 hotel.fazer_reserva(1, 101, date(2024, 7, 20), date(2024, 7, 25))
