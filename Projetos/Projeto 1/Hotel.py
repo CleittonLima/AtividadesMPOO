@@ -130,6 +130,9 @@ def menu():
         print("4- Cancelar Reserva")
         print("5- Remover Quarto")
         print("6- Editar Quarto")
+        print("0- Adicionar Item")
+        print("0- Comprar Item")
+        print("0- Exibir Dados do Hotel")
         print("7- Sair")
         opcao = input("\nEscolha uma opção: ")
 
