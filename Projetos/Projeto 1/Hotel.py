@@ -1,3 +1,4 @@
+import pickle
 from datetime import date
 
 class Quarto:
@@ -38,15 +39,28 @@ class Reserva:
 
 class Hotel:
     def __init__(self):
-        self.quartos = []
-        self.clientes = []
+        self.quartos = self.carregar_dados('quartos.pkl')
+        self.clientes = self.carregar_dados('clientes.pkl')
+
+    def salvar_dados(self, dados, arquivo):
+        with open(arquivo, 'wb') as f:
+            pickle.dump(dados, f)
+    
+    def carregar_dados(self, arquivo):
+        try:
+            with open(arquivo, 'rb') as f:
+                return pickle.load(f)
+        except FileNotFoundError:
+            return []
 
     def adicionar_quarto(self, quarto):
         self.quartos.append(quarto)
+        self.salvar_dados(self.quartos, 'quartos.pkl')
         print(f"Quarto {quarto.numero} adicionado com sucesso.")
 
     def registrar_cliente(self, cliente):
         self.clientes.append(cliente)
+        self.salvar_dados(self.clientes, 'clientes.pkl')
         print(f"Cliente {cliente.nome} registrado com sucesso.")
 
     def remover_quarto(self, numero):
@@ -54,6 +68,7 @@ class Hotel:
         if quarto:
             if not any(reserva.quarto == quarto for c in self.clientes for reserva in c.reservas):
                 self.quartos.remove(quarto)
+                self.salvar_dados(self.quartos, 'quartos.pkl')
                 print(f"Quarto {numero} removido com sucesso.")
             else:
                 print(f"Quarto {numero} não pode ser removido porque está reservado.")
@@ -67,6 +82,7 @@ class Hotel:
             novo_preco = float(input(f"Novo preço (atual: {quarto.preco}): "))
             quarto.tipo = novo_tipo
             quarto.preco = novo_preco
+            self.salvar_dados(self.quartos, 'quartos.pkl')
             print(f"Quarto {numero} editado com sucesso.")
         else:
             print("Quarto não encontrado.")
@@ -80,6 +96,8 @@ class Hotel:
             if reserva:
                 cliente.remover_reserva(reserva)
                 quarto.quarto_disponivel()
+                self.salvar_dados(self.clientes, 'clientes.pkl')
+                self.salvar_dados(self.quartos, 'quartos.pkl')
                 print(f"Reserva para o quarto {quarto.numero} cancelada com sucesso.")
             else:
                 print("Reserva não encontrada ou quarto já disponível.")
@@ -94,6 +112,8 @@ class Hotel:
             reserva = Reserva(quarto, cliente, check_in, check_out)
             cliente.adicionar_reserva(reserva)
             quarto.quarto_indisponivel()
+            self.salvar_dados(self.clientes, 'clientes.pkl')
+            self.salvar_dados(self.quartos, 'quartos.pkl')
             print(f"Reserva feita com sucesso para {cliente.nome} no quarto {quarto.numero}")
         else:
             print("Reserva não pode ser feita. Cliente ou quarto não encontrado/disponível.")
@@ -103,19 +123,19 @@ def menu():
     hotel = Hotel()
 
     while True:
-        print("\nMenu:")
-        print("1. Adicionar Quarto")
-        print("2. Registrar Cliente")
-        print("3. Fazer Reserva")
-        print("4. Cancelar Reserva")
-        print("5. Remover Quarto")
-        print("6. Editar Quarto")
-        print("7. Sair")
-        opcao = input("Escolha uma opção: ")
+        print("\n>>>>>>> MENU HOTEL <<<<<<<\n")
+        print("1- Adicionar Quarto")
+        print("2- Registrar Cliente")
+        print("3- Fazer Reserva")
+        print("4- Cancelar Reserva")
+        print("5- Remover Quarto")
+        print("6- Editar Quarto")
+        print("7- Sair")
+        opcao = input("\nEscolha uma opção: ")
 
         if opcao == "1":
             numero = int(input("Número do quarto: "))
-            tipo = input("Tipo do quarto (ex: solteiro, duplo): ")
+            tipo = input("Tipo do quarto (ex: solteiro, duplo, suite): ")
             preco = float(input("Preço do quarto: "))
             quarto = Quarto(numero, tipo, preco)
             hotel.adicionar_quarto(quarto)
